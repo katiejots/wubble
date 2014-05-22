@@ -39,6 +39,7 @@ wubble
 
 * Add a copy of the app source with the following command:
 
+        cd wubbleapp
         git pull -s recursive -X theirs git://github.com/codemiller/wubble.git
 
 * Import the SQL from _sql/import.sql_ into the OpenShift database with commands such as the following. You can use `rhc app show` to check the OpenShift database credentials.
