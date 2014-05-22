@@ -1,7 +1,7 @@
 wubble
 ================
 
-# Running Locally
+### Running Locally
 
 * Install PostgreSQL 9.2 or above 
 
@@ -25,7 +25,7 @@ wubble
 * View the app at http://localhost:4000
 
  
-# Running on OpenShift
+### Running on OpenShift
 
 * Create an [OpenShift Online account](https://www.openshift.com/app/account/new)
 
