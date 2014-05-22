@@ -26,7 +26,7 @@ http://wubble-katiemiller.rhcloud.com
 
 * View the app at http://localhost:4000
 
-* To recompile the JavaScript, install the [Haste compiler](https://github.com/valderman/haste-compiler) and run the command `make` in resources/js.
+* To recompile the JavaScript, install the [Haste compiler](https://github.com/valderman/haste-compiler) and run the command `make` in _resources/js_.
  
 ### Running on OpenShift
 
