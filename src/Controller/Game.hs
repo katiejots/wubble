@@ -22,14 +22,14 @@ game :: Connection -> ScottyM ()
 game conn = get "/game" $ do
     parameters <- params
     validWordsets <- liftIO $ wordsetNames conn
-    maybe missingParamError (validate conn validWordsets) $ mapM (flip lookup $ parameters) ["wordset", "bubbles"]
+    maybe missingParamError (validate conn validWordsets) $ mapM (`lookup` parameters) ["wordset", "bubbles"]
     where missingParamError = badRequestErr "Missing parameter"
 
 validate :: Connection -> [T.Text] -> [T.Text] -> ActionM ()    
 validate conn validWordsets (wordset:bubbles:_) 
     | T.null wordset = badRequestErr "Invalid wordset parameter"
     | T.null bubbles = badRequestErr "Invalid bubbles parameter"
-    | notElem wordset validWordsets = badRequestErr "Wordset does not exist" 
+    | wordset `notElem` validWordsets = badRequestErr "Wordset does not exist" 
     | isNotPositiveInt bubbles = badRequestErr "Bubbles must be a positive number"
     | otherwise = loadWordset conn wordset (read (T.unpack bubbles))
 validate _ _ _ = internalErr "Internal error"
@@ -44,23 +44,24 @@ loadWordset conn wsName bubbles = do
     case wordset of Nothing -> internalErr "Unable to load requested wordset"
                     Just ws@(Wordset {size = s}) -> checkBubbleNum s ws
     where checkBubbleNum s ws = if s < bubbles then badRequestErr "Not enough words in set for bubble choice" 
-                                               else liftIO (chooseDefs ws bubbles) >>= (\defs -> liftIO (shuffled defs) 
-                                                    >>= \sdefs -> renderGame (name ws) defs sdefs)
+                                               else liftIO $ chooseDefs ws bubbles >>= \defs -> 
+                                                            shuffled defs >>= \sdefs -> 
+                                                            renderGame (name ws) defs sdefs
 
 chooseDefs :: Wordset -> Int -> IO [Definition] 
-chooseDefs ws num = newStdGen >>= return . (generateDefList (definitions ws) num)
+chooseDefs ws num = newStdGen >>= return . generateDefList (definitions ws) num
 
 shuffled :: [Definition] -> IO [Definition]
 shuffled ls = runRVar (shuffle ls) StdRandom
 
 generateDefList :: [Definition] -> Int -> StdGen -> [Definition]
-generateDefList input num gen = evalState (runRVar (sample num input) StdRandom) gen
+generateDefList input num = evalState (runRVar (sample num input) StdRandom) 
 
 returnError :: Status -> String -> ActionM ()
 returnError stat err = renderError err >> status stat 
 
 badRequestErr :: String -> ActionM ()
-badRequestErr err = returnError badRequest400 err
+badRequestErr = returnError badRequest400 
 
 internalErr :: String -> ActionM ()
-internalErr err = returnError internalServerError500 err
+internalErr = returnError internalServerError500 
