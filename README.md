@@ -35,7 +35,7 @@ wubble
 
 * In a different directory to this source code, create a Haskell Scotty application with a PostgreSQL 9.2 database with the following command:
 
-        app create wubbleapp http://www.accursoft.com/cartridges/scotty.yml --from-code=http://github.com/codemiller/openshift-scotty.git
+        rhc app create wubbleapp http://www.accursoft.com/cartridges/scotty.yml --from-code=http://github.com/codemiller/openshift-scotty.git
 
 * Add a copy of the app source with the following command:
 
