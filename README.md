@@ -9,7 +9,7 @@ wubble
 
 * Start your database
 
-* Run the SQL from _bin/import.sql_  on your local database (the command might look something like this: `psql -U postgres -h 127.0.0.1 < bin/import.sql`)
+* Run the SQL from _sql/import.sql_  on your local database (the command might look something like this: `psql -U postgres -h 127.0.0.1 < sql/import.sql`)
 
 * Install GHC 7.6 or above and Cabal 1.18 or above (you can use the commands `cabal update` and `cabal install cabal-install --global` to get the latest version)
 
@@ -41,11 +41,11 @@ wubble
 
         git pull -s recursive -X theirs git://github.com/codemiller/wubble.git
 
-* Import the SQL from _bin/import.sql_ into the OpenShift database with commands such as the following. You can use `rhc app show` to check the OpenShift database credentials.
+* Import the SQL from _sql/import.sql_ into the OpenShift database with commands such as the following. You can use `rhc app show` to check the OpenShift database credentials.
 
          rhc port-forward 
          # Put the above into the background or open another terminal
-         psql -h 127.0.0.1 -p 5432 -U adminabcabc1 -d wubble < bin/import.sql 
+         psql -h 127.0.0.1 -p 5432 -U adminabcabc1 -d wubble < sql/import.sql 
          # Replace port with the one shown in the port-forwarding output
 
 * Push the new app code to OpenShift with the command `git push`
