@@ -35,7 +35,7 @@ wubble
 
 * In a different directory to this source code, create a Haskell Scotty application with a PostgreSQL 9.2 database with the following command:
 
-        app create scottyapp http://www.accursoft.com/cartridges/scotty.yml --from-code=http://github.com/codemiller/openshift-scotty.git
+        app create wubbleapp http://www.accursoft.com/cartridges/scotty.yml --from-code=http://github.com/codemiller/openshift-scotty.git
 
 * Add a copy of the app source with the following command:
 
@@ -45,10 +45,12 @@ wubble
 
          rhc port-forward 
          # Put the above into the background or open another terminal
-         psql -h 127.0.0.1 -p 5432 -U adminabcabc1 -d wubble < sql/import.sql 
+         psql -h 127.0.0.1 -p 5432 -U adminabcabc1 -d wubbleapp < sql/import.sql 
          # Replace port with the one shown in the port-forwarding output
 
 * Push the new app code to OpenShift with the command `git push`
 
-* View the app at the URL http://wubble-{yourdomain}.rhcloud.com; you can use the command `rhc app show -a wubble` to check the URL
+* View the app at the URL http://wubbleapp-{yourdomain}.rhcloud.com; you can use the command `rhc app show -a wubbleapp` to check the URL
+
+* To make changes to the app and run it locally, follow the instructions above to create a Cabal sandbox and run the app with `cabal run`. To push changes to OpenShift, use the commands `git add`, `git commit`, and `git push`.
 
