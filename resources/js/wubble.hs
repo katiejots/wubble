@@ -19,16 +19,16 @@ loadGame [textElem, dataElem] = do
     C.server (defList, 0, length defList) (handlePop textElem) 
 
 handlePop :: MonadIO m => Elem -> ([JSON], Int, Int) -> String -> m (Maybe ([JSON], Int, Int))
-handlePop textElem (defList, wordIndex, numWords) wordHit = do
-    if currentWord /= wordHit then do
+handlePop textElem (defList, wordIndex, numWords) wordHit  
+    | currentWord /= wordHit = do
         updateContent textElem "Game over! Refresh to try again." 
         return Nothing
-    else if numWords <= (wordIndex + 1) then do
-             updateContent textElem "You win! Refresh to play again." 
-             return Nothing
-         else do
-             updateContent textElem nextMeaning
-             return $ Just (defList, (wordIndex + 1), numWords)
+    | numWords <= (wordIndex + 1) = do
+        updateContent textElem "You win! Refresh to play again." 
+        return Nothing
+    | otherwise = do
+        updateContent textElem nextMeaning
+        return $ Just (defList, wordIndex + 1, numWords)
     where
         (currentWord, _) = getDefAtIndex defList wordIndex
         (_, nextMeaning) = getDefAtIndex defList (wordIndex + 1) 
@@ -43,7 +43,7 @@ getDefAtIndex defList index =
         getValStr key = extractStr $ getVal def key
    
 updateContent :: MonadIO m => Elem -> String -> m ()
-updateContent element content = setProp element innerHtml content 
+updateContent element = setProp element innerHtml 
 
 getInitData :: MonadIO m => Elem -> m (Either String JSON)
 getInitData dataElem = do  
@@ -64,7 +64,7 @@ handleClick bubbles bubble mvar = do
     C.putMVar mvar word
 
 doPop :: MonadIO m => Elem -> Elem -> m ()
-doPop bubble bubbles = removeChild bubble bubbles 
+doPop = removeChild 
 
 innerHtml :: PropID 
 innerHtml = "innerHTML"

@@ -17,7 +17,7 @@ renderHome wordsets = blaze $ do
         h1 "Wubble"
         form ! action "/game" ! method "get" $ do
             p "Wordset: "
-            select ! name "wordset" $ do
+            select ! name "wordset" $ 
                 forM_ wordsets (\wordset -> option ! value (toValue wordset) $ toHtml wordset)
             p "Number of bubbles: "
             input ! name "bubbles" ! type_ "text"

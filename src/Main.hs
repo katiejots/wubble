@@ -6,6 +6,7 @@ import Controller.Home (home)
 import Controller.Game (game)
 
 import Data.Default (def)
+import Data.Maybe (fromMaybe)
 import Data.String (fromString)
 
 import Database.PostgreSQL.Simple (ConnectInfo(..), Connection, connect)
@@ -37,7 +38,7 @@ commandLineOptions = do
     return $ def { verbose = 0, settings = sets }
 
 staticPath :: FilePath -> IO FilePath 
-staticPath dir = maybe dir (flip (++) dir) <$> lookupEnv "OPENSHIFT_REPO_DIR"
+staticPath dir = maybe dir (++ dir) <$> lookupEnv "OPENSHIFT_REPO_DIR"
 
 dbConnInfo :: IO ConnectInfo 
 dbConnInfo = do host <- getEnvDefault "OPENSHIFT_POSTGRESQL_DB_HOST" "127.0.0.1"
@@ -48,7 +49,7 @@ dbConnInfo = do host <- getEnvDefault "OPENSHIFT_POSTGRESQL_DB_HOST" "127.0.0.1"
                 return (ConnectInfo host (read port) user password dbName)
 
 getEnvDefault :: String -> String -> IO String
-getEnvDefault env defaultVal = maybe defaultVal id <$> lookupEnv env
+getEnvDefault env defaultVal = fromMaybe defaultVal <$> lookupEnv env
 
 dbConn :: IO Connection
 dbConn = dbConnInfo >>= connect
