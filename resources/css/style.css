@@ -1,0 +1,56 @@
+.bubble
+{
+  background        : url("../images/bubble.png");
+  background-repeat : no-repeat;
+  background-size   : cover;
+  width             : 100px;
+  height            : 100px;
+  text-align        : center;
+  display           : table-cell;
+  vertical-align    : middle;
+}
+
+#bubbles
+{
+  display         : table;
+  border-collapse : separate;
+  border-spacing  : 10px;
+  margin-left     : auto;
+  margin-right    : auto;
+  padding-top     : 20px;
+}
+
+.maintext
+{
+  font-size   : 70px;
+  font-family : "BubblePixel", sans-serif;
+  color       : rgb(0,76,211);
+  padding-top : 50px;
+  text-align  : center;
+}
+
+#gametext
+{
+  font-size      : 26px;
+  text-align     : center;
+  font-weight    : bold;
+  padding-top    : 40px;
+  padding-bottom : 40px;
+  background     : rgb(139,187,205);
+}
+
+.instructions
+{
+  text-align : center;
+  font-style : italic;
+  font-size  : 16px;
+}
+
+@font-face
+{
+  font-family : "BubblePixel";
+  src         : url("../fonts/bubble_pixel-7.ttf")format("truetype");
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */

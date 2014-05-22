@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg6083" viewBox="0 0 91.15 101.99" version="1.1">
+  <defs id="defs6085">
+    <clipPath id="clipPath3321" clipPathUnits="userSpaceOnUse">
+      <path id="path3323" opacity=".98" d="m243.62 838.3a45.575 45.575 0 1 1 -91.15 0 45.575 45.575 0 1 1 91.15 0z" stroke="#8bbbcd" stroke-width="7" fill="none"/>
+    </clipPath>
+    <filter id="filter3620" color-interpolation-filters="sRGB">
+      <feGaussianBlur id="feGaussianBlur3622" stdDeviation="2.5287621"/>
+    </filter>
+    <radialGradient id="radialGradient4222" gradientUnits="userSpaceOnUse" cy="752.75" cx="131.25" gradientTransform="matrix(1 0 0 .5 0 376.38)" r="35.938">
+      <stop id="stop4211" stop-color="#b6d9e2" offset="0"/>
+      <stop id="stop4213" stop-color="#b6d9e2" stop-opacity="0" offset="1"/>
+    </radialGradient>
+  </defs>
+  <g id="layer1" transform="translate(-114.42 -147.08)">
+    <path id="path3610" opacity=".98" d="m243.62 838.3a45.575 45.575 0 1 1 -91.15 0 45.575 45.575 0 1 1 91.15 0z" clip-path="url(#clipPath3321)" transform="translate(-38.045 -634.8)" filter="url(#filter3620)" stroke="#8bbbcd" stroke-width="7" fill="#fff"/>
+    <path id="path3421" d="m167.19 752.75a35.938 17.969 0 1 1 -71.875 0 35.938 17.969 0 1 1 71.875 0z" fill="url(#radialGradient4222)" transform="translate(29.027 -571.58)"/>
+    <path id="path3325" opacity=".98" d="m187.89 838.69-11.524-11.766-2.6336 16.257 0.17151-16.468-13.358 9.6335 11.766-11.524-16.257-2.6336 16.468 0.1715-9.6335-13.358 11.524 11.766 2.6336-16.257-0.17151 16.468 13.358-9.6335-11.766 11.524 16.257 2.6336-16.468-0.17151 9.6335 13.358z" fill="#fbfbfb" transform="translate(9.2875 -657.43)"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Bubble</dc:title>
+        <dc:date>2011-02-24T01:13:05</dc:date>
+        <dc:description>blue, bubble, clip art, clipart, shiny, soap, sphere, </dc:description>
+        <dc:source>http://openclipart.org/detail/122023/bubble-by-dear_theophilus</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>dear_theophilus</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>blue</rdf:li>
+            <rdf:li>bubble</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>shiny</rdf:li>
+            <rdf:li>soap</rdf:li>
+            <rdf:li>sphere</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

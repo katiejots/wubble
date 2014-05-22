@@ -1,0 +1,89 @@
+name:                 wubble 
+version:              0.1
+license:              Apache-2.0
+license-file:         LICENSE
+author:               Katie Miller
+maintainer:           Katie Miller
+copyright:            Copyright (C) 2014 Katie Miller
+category:             Web
+description:          Wubble demo app 
+homepage:             https://github.com/codemiller/wubble
+bug-reports:          https://github.com/codemiller/wubble/issues
+cabal-version:        >= 1.10
+build-type:           Custom
+
+source-repository     head
+  type:               git
+  location:           git@github.com:codemiller/wubble.git
+
+library
+  default-language:   Haskell2010
+  ghc-options:        -Wall
+  other-extensions:   OverloadedStrings
+  build-depends:      aeson >=0.7 && <0.8
+                      , base >=4.6 && <4.7
+                      , blaze-html >= 0.7 && <0.8
+                      , clay >= 0.8 && <0.9
+                      , data-default >=0.5.3 && <0.6
+                      , http-types >=0.8.3 && <0.10
+                      , mtl >=2.1.2 && < 2.2
+                      , network-conduit >=1.0.3 && <1.2
+                      , postgresql-libpq >=0.8.2 && <0.9
+                      , postgresql-simple >=0.4 && <0.4.3 
+                      , random >=1.0.1.1 && <1.0.2.0
+                      , random-extras >=0.19 && <0.20
+                      , random-fu >=0.2.5.0 && <0.3
+                      , scotty >=0.7 && <0.8
+                      , temporary >=1.1 && <1.2.0.2
+                      , text >=0.11.1 && <1.2
+                      , transformers >=0.3 && <0.4
+                      , unix >=2.6 && <2.7
+                      , vector-th-unbox >=0.2 && <0.2.0.2
+                      , wai >=2.1 && <2.2
+                      , wai-middleware-static >=0.5 && <0.6
+                      , wai-extra >=2.0.3 && <2.2
+                      , warp >=2.1 && <2.2
+  hs-source-dirs:     src
+
+executable server
+  default-language:   Haskell2010
+  main-is:            Main.hs
+  ghc-options:        -Wall
+  other-extensions:   OverloadedStrings
+  build-depends:      aeson >=0.7 && <0.8
+                      , base >=4.6 && <4.7
+                      , blaze-html >= 0.7 && <0.8
+                      , clay >= 0.8 && <0.9
+                      , data-default >=0.5.3 && <0.6
+                      , http-types >=0.8.3 && <0.10
+                      , mtl >=2.1.2 && < 2.2
+                      , network-conduit >=1.0.3 && <1.2
+                      , postgresql-libpq >=0.8.2 && <0.9
+                      , postgresql-simple >=0.4 && <0.4.3 
+                      , random >=1.0.1.1 && <1.0.2.0
+                      , random-extras >=0.19 && <0.20
+                      , random-fu >=0.2.5.0 && <0.3
+                      , scotty >=0.7 && <0.8
+                      , temporary >=1.1 && <1.2.0.2
+                      , text >=0.11.1 && <1.2
+                      , transformers >=0.3 && <0.4
+                      , unix >=2.6 && <2.7
+                      , vector-th-unbox >=0.2 && <0.2.0.2
+                      , wai >=2.1 && <2.2
+                      , wai-middleware-static >=0.5 && <0.6
+                      , wai-extra >=2.0.3 && <2.2
+                      , warp >=2.1 && <2.2
+  hs-source-dirs:     src
+
+test-suite doctests
+  type:               exitcode-stdio-1.0
+  main-is:            doctests.hs
+  default-language:   Haskell2010
+  build-depends:      base >=4.6 && <4.7
+                      , directory >=1.1 && <=1.3
+                      , doctest >=0.8 && <=0.9.11
+                      , filepath >=1.3 && <1.4
+                      , QuickCheck >=2.0 && <=2.8
+  ghc-options:       -Wall
+                     -threaded
+  hs-source-dirs:    test
