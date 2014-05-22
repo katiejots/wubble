@@ -24,6 +24,7 @@ wubble
 
 * View the app at http://localhost:4000
 
+* To recompile the JavaScript, install the [Haste compiler](https://github.com/valderman/haste-compiler) and run the command `make` in resources/js.
  
 ### Running on OpenShift
 
@@ -55,5 +56,5 @@ wubble
 
 * To make changes to the app and run it locally, follow the instructions above to create a Cabal sandbox and run the app with `cabal run`. To push changes to OpenShift, use the commands `git add`, `git commit`, and `git push`.
 
-* To recompile the JavaScript, install the Haste compiler and run the command `make` in _resources/js_.
+* To recompile the JavaScript, install the [Haste compiler](https://github.com/valderman/haste-compiler) and run the command `make` in _resources/js_.
 
