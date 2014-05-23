@@ -23,7 +23,7 @@ main :: IO ()
 main = do
     opts <- commandLineOptions
     static <- staticPath "resources"
-    _ <- generateResources static
+    generateResources static
     conn <- dbConn
 
     scottyOpts opts $ do

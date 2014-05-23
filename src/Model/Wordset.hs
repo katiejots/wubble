@@ -33,5 +33,5 @@ constructWordset conn wsName wsTopic wsId = do
     defs <- query conn "SELECT word, meaning FROM definition \
                       \ JOIN wordset_definition ON wordset_definition.definition_id = definition.id \
                       \ WHERE wordset_definition.wordset_id = ?" [wsId] :: IO [Definition]
-    return $ Just $ Wordset wsName wsTopic (length defs) defs 
+    return . Just . Wordset wsName wsTopic (length defs) $ defs 
  
