@@ -2478,7 +2478,7 @@ var _0/* () */ = 0, _1/* ++ */ = function(_2, _3){
     return _4E/* GHC.IO.Exception.untangle */(_4O, _4o/* Control.Exception.Base.lvl1 */);
   })], _4m/* Control.Exception.Base.$fExceptionPatternMatchFail_$ctoException */);
 }, _4P/* getDefAtIndex3 */ = new T(function(){
-  return _4N/* Control.Exception.Base.patError */("wubble.hs:42:9-44|function extractStr");
+  return _4N/* Control.Exception.Base.patError */("wubble.hs:44:9-44|function extractStr");
 }), _4Q/* getDefAtIndex5 */ = unCStr("word"), _4R/* getDefAtIndex4 */ = new T(function(){
   return [0, toJSStr(E(_4Q/* Main.getDefAtIndex5 */))];
 }), _4S/* $wgetDefAtIndex */ = function(_4T, _4U){
@@ -2596,10 +2596,10 @@ var _0/* () */ = 0, _1/* ++ */ = function(_2, _3){
 }, _5P/* handlePop_$shandlePop */ = function(_5Q, _5R, _5S){
   var _5T = E(_5R);
   return _5u/* Main.$w$shandlePop */(_5Q, _5T[1], _5T[2], _5T[3], _5S);
-}, _5U/* loadGame1 */ = [0, 0], _5V/* lvl */ = unCStr("Pattern match failure in do expression at wubble.hs:16:5-25"), _5W/* loadGame2 */ = new T(function(){
+}, _5U/* loadGame1 */ = [0, 0], _5V/* lvl */ = unCStr("Pattern match failure in do expression at wubble.hs:18:5-25"), _5W/* loadGame2 */ = new T(function(){
   return _u/* Haste.Concurrent.Monad.$fMonadCIO_$cfail */(_5V/* Main.lvl */);
 }), _5X/* loadGame3 */ = new T(function(){
-  return _4N/* Control.Exception.Base.patError */("wubble.hs:(15,1)-(19,62)|function loadGame");
+  return _4N/* Control.Exception.Base.patError */("wubble.hs:(17,1)-(21,72)|function loadGame");
 }), _5Y/* concurrent2 */ = function(_5Z){
   return [2];
 }, _60/* forkIO1 */ = function(_t){

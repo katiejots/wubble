@@ -11,15 +11,17 @@ main = C.concurrent $ do
     mvar <- withElems ["gametext", "gamedata"] loadGame
     withElem "bubbles" (addHandlers mvar)
 
+data GameState = GameState [JSON] Int Int deriving (Show)
+
 loadGame :: [Elem] -> C.CIO (C.MVar String)
 loadGame [textElem, dataElem] = do
     (Right (Arr defList)) <- getInitData dataElem
     let (_, meaning) = getDefAtIndex defList 0 
     updateContent textElem meaning
-    C.server (defList, 0, length defList) (handlePop textElem) 
+    C.server (GameState defList 0 $ length defList) (handlePop textElem) 
 
-handlePop :: MonadIO m => Elem -> ([JSON], Int, Int) -> String -> m (Maybe ([JSON], Int, Int))
-handlePop textElem (defList, wordIndex, numWords) wordHit  
+handlePop :: MonadIO m => Elem -> GameState -> String -> m (Maybe GameState)
+handlePop textElem (GameState defList wordIndex numWords) wordHit  
     | currentWord /= wordHit = do
         updateContent textElem "Game over! Refresh to try again." 
         return Nothing
@@ -28,7 +30,7 @@ handlePop textElem (defList, wordIndex, numWords) wordHit
         return Nothing
     | otherwise = do
         updateContent textElem nextMeaning
-        return $ Just (defList, wordIndex + 1, numWords)
+        return . Just . GameState defList (wordIndex + 1) $ numWords
     where
         (currentWord, _) = getDefAtIndex defList wordIndex
         (_, nextMeaning) = getDefAtIndex defList (wordIndex + 1) 
