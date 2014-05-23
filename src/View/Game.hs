@@ -21,7 +21,7 @@ renderGame _ defs shuffled = blaze $ do
         p ! class_ "instructions" $ "Click the word bubble that matches the definition."
         div ! id "gametext" $ ""
         div ! id "bubbles" $ 
-            forM_ shuffled (div ! class_ "bubble" . toHtml $ word) 
+            forM_ shuffled (\def -> div ! class_ "bubble" $ toHtml $ word def) 
         script ! id "gamedata" ! type_ "application/json" $ 
             unsafeLazyByteString $ encode defs
         script ! src "js/wubble.js" $ ""

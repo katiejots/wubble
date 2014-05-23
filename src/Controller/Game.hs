@@ -44,8 +44,8 @@ loadWordset conn wsName bubbles = do
     case wordset of Nothing -> internalErr "Unable to load requested wordset"
                     Just ws@(Wordset {size = s}) -> checkBubbleNum s ws
     where checkBubbleNum s ws = if s < bubbles then badRequestErr "Not enough words in set for bubble choice" 
-                                               else liftIO $ chooseDefs ws bubbles >>= \defs -> 
-                                                            shuffled defs >>= \sdefs -> 
+                                               else liftIO (chooseDefs ws bubbles) >>= \defs -> 
+                                                            liftIO (shuffled defs) >>= \sdefs -> 
                                                             renderGame (name ws) defs sdefs
 
 chooseDefs :: Wordset -> Int -> IO [Definition] 
