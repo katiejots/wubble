@@ -32,7 +32,7 @@ wordsetByName conn wsName = do
 constructWordset :: MonadIO m => Connection -> T.Text -> T.Text -> Integer -> m Wordset
 constructWordset conn wsName wsTopic wsId = do
     defs <- liftIO (query conn "SELECT word, meaning FROM definition \
-                               \ JOIN wordset_definition ON wordset_definition.definition_id = definition.id \
-                               \ WHERE wordset_definition.wordset_id = ?" [wsId] :: IO [Definition])
+                              \ JOIN wordset_definition ON wordset_definition.definition_id = definition.id \
+                              \ WHERE wordset_definition.wordset_id = ?" [wsId] :: IO [Definition])
     return $ Wordset wsName wsTopic (length defs) defs 
  

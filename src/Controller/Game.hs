@@ -43,11 +43,10 @@ loadWordset :: Connection -> T.Text -> Int -> ActionM ()
 loadWordset conn wsName bubbles = do
     wordset <- liftIO . runMaybeT $ wordsetByName conn wsName 
     case wordset of Nothing -> internalErr "Unable to load requested wordset"
-                    Just ws@(Wordset {size = s}) -> checkBubbleNum s ws
-    where checkBubbleNum s ws = if s < bubbles then badRequestErr "Not enough words in set for bubble choice" 
-                                else liftIO (chooseDefs ws bubbles) >>= \defs -> 
-                                             liftIO (shuffled defs) >>= \sdefs -> 
-                                             renderGame (name ws) defs sdefs
+                    Just ws -> if size ws < bubbles then badRequestErr "Not enough words in set for bubble choice" 
+                               else liftIO (chooseDefs ws bubbles) >>= \defs -> 
+                                            liftIO (shuffled defs) >>= \sdefs -> 
+                                            renderGame (name ws) defs sdefs
 
 chooseDefs :: Wordset -> Int -> IO [Definition] 
 chooseDefs ws num = newStdGen >>= return . generateDefList (definitions ws) num
