@@ -6,8 +6,8 @@ module Model.Wordset (
             , wordsetByName
             ) where
 
-import Control.Monad.IO.Class (liftIO)
-import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
+import Control.Monad.IO.Class (liftIO, MonadIO)
+import Control.Monad.Trans.Maybe (MaybeT(..))
 import qualified Data.Text.Lazy as T (Text)
 import Database.PostgreSQL.Simple (Connection, Only(..), query_, query)
 import Database.PostgreSQL.Simple.FromField ()
@@ -29,7 +29,7 @@ wordsetByName conn wsName = do
     case wordsets of (wsId, wsTopic):_ -> constructWordset conn wsName wsTopic wsId
                      _ -> MaybeT $ return Nothing 
 
-constructWordset :: Connection -> T.Text -> T.Text -> Integer -> MaybeT IO Wordset
+constructWordset :: MonadIO m => Connection -> T.Text -> T.Text -> Integer -> m Wordset
 constructWordset conn wsName wsTopic wsId = do
     defs <- liftIO (query conn "SELECT word, meaning FROM definition \
                                \ JOIN wordset_definition ON wordset_definition.definition_id = definition.id \
