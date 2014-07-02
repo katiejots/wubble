@@ -5,6 +5,7 @@ module Controller.Game
 
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.State.Lazy (evalState)
+import Control.Monad.Trans.Maybe (runMaybeT)
 import Data.Char (isDigit)
 import Data.Random (StdRandom(..), runRVar, runRVar)
 import Data.Random.Extras (sample, shuffle)
@@ -40,7 +41,7 @@ isNotPositiveInt txt = not (Prelude.all isDigit t) || read t < (1 :: Int)
 
 loadWordset :: Connection -> T.Text -> Int -> ActionM ()
 loadWordset conn wsName bubbles = do
-    wordset <- liftIO $ wordsetByName conn wsName 
+    wordset <- liftIO . runMaybeT $ wordsetByName conn wsName 
     case wordset of Nothing -> internalErr "Unable to load requested wordset"
                     Just ws@(Wordset {size = s}) -> checkBubbleNum s ws
     where checkBubbleNum s ws = if s < bubbles then badRequestErr "Not enough words in set for bubble choice" 

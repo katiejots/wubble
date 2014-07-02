@@ -25,6 +25,7 @@ library
                       , blaze-html >= 0.7 && <0.8
                       , clay >= 0.8 && <0.9
                       , data-default >=0.5.3 && <0.6
+                      , haste-compiler >=0.2.99 && <0.3
                       , http-types >=0.8.3 && <0.10
                       , mtl >=2.1.2 && < 2.2
                       , network-conduit >=1.0.3 && <1.2
@@ -55,6 +56,7 @@ executable server
                       , blaze-html >= 0.7 && <0.8
                       , clay >= 0.8 && <0.9
                       , data-default >=0.5.3 && <0.6
+                      , haste-compiler >=0.2.99 && <0.3
                       , http-types >=0.8.3 && <0.10
                       , mtl >=2.1.2 && < 2.2
                       , network-conduit >=1.0.3 && <1.2
