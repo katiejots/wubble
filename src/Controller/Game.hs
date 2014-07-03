@@ -3,6 +3,7 @@
 module Controller.Game
     (game) where
 
+import Control.Lens ((^.))
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.State.Lazy (evalState)
 import Control.Monad.Trans.Maybe (runMaybeT)
@@ -11,8 +12,8 @@ import Data.Random (StdRandom(..), runRVar, runRVar)
 import Data.Random.Extras (sample, shuffle)
 import Data.Text.Lazy as T
 import Database.PostgreSQL.Simple (Connection)
-import Model.Definition (Definition(..))
-import Model.Wordset (Wordset(..), wordsetNames, wordsetByName)
+import Model.Definition (Definition)
+import Model.Wordset (Wordset, size, name, definitions, wordsetNames, wordsetByName)
 import Network.HTTP.Types.Status (Status, badRequest400, internalServerError500)
 import System.Random (StdGen, newStdGen)
 import View.Error (renderError)
@@ -43,13 +44,13 @@ loadWordset :: Connection -> T.Text -> Int -> ActionM ()
 loadWordset conn wsName bubbles = do
     wordset <- liftIO . runMaybeT $ wordsetByName conn wsName 
     case wordset of Nothing -> internalErr "Unable to load requested wordset"
-                    Just ws -> if size ws < bubbles then badRequestErr "Not enough words in set for bubble choice" 
+                    Just ws -> if ws^.size < bubbles then badRequestErr "Not enough words in set for bubble choice" 
                                else liftIO (chooseDefs ws bubbles) >>= \defs -> 
                                             liftIO (shuffled defs) >>= \sdefs -> 
-                                            renderGame (name ws) defs sdefs
+                                            renderGame (ws^.name) defs sdefs
 
 chooseDefs :: Wordset -> Int -> IO [Definition] 
-chooseDefs ws num = newStdGen >>= return . generateDefList (definitions ws) num
+chooseDefs ws num = newStdGen >>= return . generateDefList (ws^.definitions) num
 
 shuffled :: [Definition] -> IO [Definition]
 shuffled ls = runRVar (shuffle ls) StdRandom

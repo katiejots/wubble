@@ -24,7 +24,7 @@
 {
   font-size   : 70px;
   font-family : "BubblePixel", sans-serif;
-  color       : rgb(0,76,211);
+  color       : rgb(0,185,255);
   padding-top : 50px;
   text-align  : center;
 }
@@ -36,7 +36,7 @@
   font-weight    : bold;
   padding-top    : 40px;
   padding-bottom : 40px;
-  background     : rgb(139,187,205);
+  background     : rgb(86,208,255);
 }
 
 .instructions

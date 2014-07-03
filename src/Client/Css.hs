@@ -47,7 +47,7 @@ gamehead :: Css
 gamehead = ".maintext" ? do
     fontSize (px 70)
     fontFamily ["BubblePixel"] [sansSerif]
-    color $ rgb 0 76 211 
+    color $ rgb 0 185 255
     paddingTop (px 50) 
     textAlign (alignSide sideCenter)
 
@@ -58,7 +58,7 @@ gametext = "#gametext" ? do
     fontWeight bold
     paddingTop (px 40)
     paddingBottom (px 40)
-    background $ rgb 139 187 205 
+    background $ rgb 86 208 255 
 
 instruct :: Css
 instruct = ".instructions" ? do

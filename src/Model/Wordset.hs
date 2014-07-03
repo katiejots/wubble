@@ -1,23 +1,30 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, TemplateHaskell #-}
 
 module Model.Wordset (
-              Wordset(..)
+              Wordset
+            , name
+            , topic
+            , size
+            , definitions
             , wordsetNames 
             , wordsetByName
             ) where
 
+import Control.Lens (makeLenses)
 import Control.Monad.IO.Class (liftIO, MonadIO)
 import Control.Monad.Trans.Maybe (MaybeT(..))
 import qualified Data.Text.Lazy as T (Text)
 import Database.PostgreSQL.Simple (Connection, Only(..), query_, query)
 import Database.PostgreSQL.Simple.FromField ()
-import Model.Definition (Definition(..))
+import Model.Definition (Definition)
 
-data Wordset = Wordset { name :: T.Text
-                       , topic :: T.Text
-                       , size :: Int 
-                       , definitions :: [Definition] 
+data Wordset = Wordset { _name :: T.Text
+                       , _topic :: T.Text
+                       , _size :: Int 
+                       , _definitions :: [Definition] 
                        } deriving (Eq, Show)
+
+makeLenses ''Wordset
 
 wordsetNames :: Connection -> IO [T.Text] 
 wordsetNames conn = do wordsets <- query_ conn "SELECT name FROM wordset ORDER BY name" :: IO [Only T.Text] 

@@ -2,10 +2,11 @@
 
 module View.Game (renderGame) where
 
+import Control.Lens ((^.))
 import Control.Monad (forM_)
 import Data.Aeson (encode)
 import Data.Text.Lazy as T
-import Model.Definition (Definition(..))
+import Model.Definition (Definition, word)
 import Prelude hiding (id, div)
 import Text.Blaze.Html5.Attributes (class_, src, id, type_)
 import Text.Blaze.Html5 (body, div, p, script, toHtml, (!), unsafeLazyByteString)
@@ -21,7 +22,7 @@ renderGame _ defs shuffled = blaze $ do
         p ! class_ "instructions" $ "Click the word bubble that matches the definition."
         div ! id "gametext" $ ""
         div ! id "bubbles" $ 
-            forM_ shuffled (\def -> div ! class_ "bubble" $ toHtml $ word def) 
+            forM_ shuffled (\def -> div ! class_ "bubble" $ toHtml $ def^.word) 
         script ! id "gamedata" ! type_ "application/json" $ 
             unsafeLazyByteString $ encode defs
         script ! src "js/wubble.js" $ ""
