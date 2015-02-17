@@ -20,30 +20,31 @@ library
   default-language:   Haskell2010
   ghc-options:        -Wall
   other-extensions:   OverloadedStrings
-  build-depends:      aeson >=0.7 && <0.8
-                      , base >=4.6 && <4.7
+  build-depends:      aeson >=0.7 && <0.9
+                      , base >=4.6 && <5
                       , blaze-html >= 0.7 && <0.8
+                      , case-insensitive >=0.2 && <1.2.0.4
                       , clay >= 0.8 && <0.9
                       , data-default >=0.5.3 && <0.6
-                      , http-types >=0.8.3 && <0.10
+                      , http-types >=0.8.3 && <0.8.6
                       , lens >=4.0 && <5.0
                       , mtl >=2.1.2 && < 2.2
                       , network-conduit >=1.0.3 && <1.2
                       , postgresql-libpq >=0.8.2 && <0.9
                       , postgresql-simple >=0.4 && <0.4.3 
-                      , random >=1.0.1.1 && <1.0.2.0
+                      , random >=1.0.1.1 && <1.2
                       , random-extras >=0.19 && <0.20
                       , random-fu >=0.2.5.0 && <0.3
-                      , scotty >=0.7 && <0.8
+                      , scotty >=0.7 && <0.10
                       , temporary >=1.1 && <1.2.0.2
-                      , text >=0.11.1 && <1.2
-                      , transformers >=0.3 && <0.4
-                      , unix >=2.6 && <2.7
+                      , text >=0.11 && <1.3
+                      , transformers >=0.3 && <0.5
+                      , unix >=2.6 && <2.8
                       , vector-th-unbox >=0.2 && <0.2.0.2
-                      , wai >=2.1 && <2.2
-                      , wai-middleware-static >=0.5 && <0.6
-                      , wai-extra >=2.0.3 && <2.2
-                      , warp >=2.1 && <2.2
+                      , wai >=2.1 && <3.1
+                      , wai-middleware-static >=0.5 && <0.7
+                      , wai-extra >=2.0.3 && <3.1
+                      , warp >=2.1 && <3.0.8
   hs-source-dirs:     src
 
 executable server
@@ -51,37 +52,38 @@ executable server
   main-is:            Main.hs
   ghc-options:        -Wall
   other-extensions:   OverloadedStrings
-  build-depends:      aeson >=0.7 && <0.8
-                      , base >=4.6 && <4.7
+  build-depends:      aeson >=0.7 && <0.9
+                      , base >=4.6 && <5
                       , blaze-html >= 0.7 && <0.8
+                      , case-insensitive >=0.2 && <1.2.0.4
                       , clay >= 0.8 && <0.9
                       , data-default >=0.5.3 && <0.6
-                      , http-types >=0.8.3 && <0.10
+                      , http-types >=0.8.3 && <0.8.6
                       , lens >=4.0 && <5.0
                       , mtl >=2.1.2 && < 2.2
                       , network-conduit >=1.0.3 && <1.2
                       , postgresql-libpq >=0.8.2 && <0.9
                       , postgresql-simple >=0.4 && <0.4.3 
-                      , random >=1.0.1.1 && <1.0.2.0
+                      , random >=1.0.1.1 && <1.2
                       , random-extras >=0.19 && <0.20
                       , random-fu >=0.2.5.0 && <0.3
-                      , scotty >=0.7 && <0.8
+                      , scotty >=0.7 && <0.10
                       , temporary >=1.1 && <1.2.0.2
-                      , text >=0.11.1 && <1.2
-                      , transformers >=0.3 && <0.4
-                      , unix >=2.6 && <2.7
+                      , text >=0.11 && <1.3
+                      , transformers >=0.3 && <0.5
+                      , unix >=2.6 && <2.8
                       , vector-th-unbox >=0.2 && <0.2.0.2
-                      , wai >=2.1 && <2.2
-                      , wai-middleware-static >=0.5 && <0.6
-                      , wai-extra >=2.0.3 && <2.2
-                      , warp >=2.1 && <2.2
+                      , wai >=2.1 && <3.1
+                      , wai-middleware-static >=0.5 && <0.7
+                      , wai-extra >=2.0.3 && <3.1
+                      , warp >=2.1 && <3.0.8
   hs-source-dirs:     src
 
 test-suite doctests
   type:               exitcode-stdio-1.0
   main-is:            doctests.hs
   default-language:   Haskell2010
-  build-depends:      base >=4.6 && <4.7
+  build-depends:      base >=4.6 && <4.8
                       , directory >=1.1 && <=1.3
                       , doctest >=0.8 && <=0.9.11
                       , filepath >=1.3 && <1.4
